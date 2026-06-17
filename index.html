@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Google Listing Services | Own Local Search</title>
+<meta name="description" content="Google Listing Services helps businesses dominate Google Business Profile, Local SEO, Maps and lead generation.">
+<link rel="canonical" href="https://goooglelisting.services">
+<style>
+body{margin:0;font-family:Arial,sans-serif;background:#07111f;color:#fff}
+header{padding:18px 8%;display:flex;justify-content:space-between;align-items:center;background:#091527;position:sticky;top:0}
+.logo{font-size:32px;font-weight:700}
+.logo span:nth-child(1){color:#4285F4}.logo span:nth-child(2){color:#EA4335}.logo span:nth-child(3){color:#FBBC05}.logo span:nth-child(4){color:#4285F4}.logo span:nth-child(5){color:#34A853}.logo span:nth-child(6){color:#EA4335}
+.hero{padding:100px 8%;text-align:center}
+h1{font-size:64px;max-width:900px;margin:auto}
+p{line-height:1.7}
+.btn{display:inline-block;padding:16px 28px;background:#4285F4;color:#fff;text-decoration:none;border-radius:10px;margin:10px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;padding:50px 8%}
+.card{background:#10203a;padding:28px;border-radius:16px}
+.cta{padding:80px 8%;text-align:center;background:#0b1830}
+footer{padding:40px;text-align:center;color:#aaa}
+.small{max-width:750px;margin:auto}
+.form-section{padding:80px 8%;background:#0b1830}
+.form-section h2{text-align:center;font-size:36px;margin-bottom:8px}
+.form-section p.sub{text-align:center;color:#aab;margin-bottom:40px}
+.contact-form{max-width:620px;margin:0 auto;display:flex;flex-direction:column;gap:20px}
+.contact-form label{font-size:14px;color:#aab;margin-bottom:4px;display:block}
+.contact-form input,.contact-form select,.contact-form textarea{width:100%;padding:14px 16px;background:#10203a;border:1px solid #1e3a5f;border-radius:10px;color:#fff;font-size:16px;box-sizing:border-box;outline:none;transition:border .2s}
+.contact-form input:focus,.contact-form select:focus,.contact-form textarea:focus{border-color:#4285F4}
+.contact-form select option{background:#10203a}
+.contact-form textarea{resize:vertical;min-height:110px}
+.contact-form button{padding:16px;background:#4285F4;color:#fff;border:none;border-radius:10px;font-size:17px;font-weight:700;cursor:pointer;transition:background .2s}
+.contact-form button:hover{background:#3367d6}
+.form-success{display:none;text-align:center;padding:32px;background:#10203a;border-radius:16px;color:#34A853;font-size:18px;font-weight:600}
+</style>
+</head>
+<body>
+<header>
+<div class="logo"><span>G</span><span>o</span><span>o</span><span>g</span><span>l</span><span>e</span> Listing Services</div>
+<a class="btn" href="tel:+14432250566">Call (443) 225-0566</a>
+</header>
+
+<section class="hero">
+<h1>Get Found. Get Clicked. Get Customers.</h1>
+<p class="small">Google Listing Services helps contractors, local businesses, and growth-focused companies dominate Google Business Profile, Maps, Local SEO, and lead generation.</p>
+<a class="btn" href="tel:+14432250566">Book Free Audit</a>
+</section>
+
+<section class="grid">
+<div class="card"><h2>Google Business Profile</h2><p>Optimization, categories, posting, reviews and visibility.</p></div>
+<div class="card"><h2>Local SEO</h2><p>Rank in search where customers are already looking.</p></div>
+<div class="card"><h2>Google Maps</h2><p>Increase calls, direction requests and local authority.</p></div>
+<div class="card"><h2>Lead Tracking</h2><p>Know exactly what drives revenue.</p></div>
+</section>
+
+<section class="form-section">
+<h2>Let's Get You Found</h2>
+<p class="sub">Tell us about your business and we'll reach out to build your Google presence.</p>
+<form name="customer-inquiry" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="contact-form" id="inquiry-form">
+  <input type="hidden" name="form-name" value="customer-inquiry" />
+  <p style="display:none"><label>Don't fill this out: <input name="bot-field" /></label></p>
+  <div>
+    <label for="name">Your Name</label>
+    <input type="text" id="name" name="name" placeholder="Jane Smith" required />
+  </div>
+  <div>
+    <label for="business-type">Type of Business</label>
+    <select id="business-type" name="business-type" required>
+      <option value="" disabled selected>Select your business type</option>
+      <option>Contractor / Trades</option>
+      <option>Restaurant / Food Service</option>
+      <option>Retail / Shop</option>
+      <option>Medical / Health</option>
+      <option>Legal / Professional Services</option>
+      <option>Home Services</option>
+      <option>Real Estate</option>
+      <option>Auto / Automotive</option>
+      <option>Other Local Business</option>
+    </select>
+  </div>
+  <div>
+    <label for="contact-time">Best Time to Contact</label>
+    <select id="contact-time" name="best-time-to-contact" required>
+      <option value="" disabled selected>When works best for you?</option>
+      <option>Morning (8am – 12pm)</option>
+      <option>Afternoon (12pm – 5pm)</option>
+      <option>Evening (5pm – 8pm)</option>
+      <option>Anytime</option>
+    </select>
+  </div>
+  <div>
+    <label for="desired-result">Desired Result</label>
+    <textarea id="desired-result" name="desired-result" placeholder="E.g. More calls from Google Maps, rank #1 locally, get more 5-star reviews…" required></textarea>
+  </div>
+  <button type="submit">Send My Information</button>
+</form>
+<div class="form-success" id="form-success">
+  Thanks! We received your information and will be in touch soon.
+</div>
+</section>
+
+<script>
+const form = document.getElementById('inquiry-form');
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const res = await fetch('/', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: new URLSearchParams(new FormData(form)).toString(),
+  });
+  if (res.ok) {
+    form.style.display = 'none';
+    document.getElementById('form-success').style.display = 'block';
+  }
+});
+</script>
+
+<footer>
+© 2026 Google Listing Services
+</footer>
+</body>
+</html>
