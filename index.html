@@ -20,6 +20,18 @@ p{line-height:1.7}
 .cta{padding:80px 8%;text-align:center;background:#0b1830}
 footer{padding:40px;text-align:center;color:#aaa}
 .small{max-width:750px;margin:auto}
+.form-section{padding:80px 8%;background:#0b1830}
+.form-section h2{text-align:center;font-size:36px;margin-bottom:8px}
+.form-section p.sub{text-align:center;color:#aab;margin-bottom:40px}
+.contact-form{max-width:620px;margin:0 auto;display:flex;flex-direction:column;gap:20px}
+.contact-form label{font-size:14px;color:#aab;margin-bottom:4px;display:block}
+.contact-form input,.contact-form select,.contact-form textarea{width:100%;padding:14px 16px;background:#10203a;border:1px solid #1e3a5f;border-radius:10px;color:#fff;font-size:16px;box-sizing:border-box;outline:none;transition:border .2s}
+.contact-form input:focus,.contact-form select:focus,.contact-form textarea:focus{border-color:#4285F4}
+.contact-form select option{background:#10203a}
+.contact-form textarea{resize:vertical;min-height:110px}
+.contact-form button{padding:16px;background:#4285F4;color:#fff;border:none;border-radius:10px;font-size:17px;font-weight:700;cursor:pointer;transition:background .2s}
+.contact-form button:hover{background:#3367d6}
+.form-success{display:none;text-align:center;padding:32px;background:#10203a;border-radius:16px;color:#34A853;font-size:18px;font-weight:600}
 </style>
 </head>
 <body>
@@ -41,11 +53,67 @@ footer{padding:40px;text-align:center;color:#aaa}
 <div class="card"><h2>Lead Tracking</h2><p>Know exactly what drives revenue.</p></div>
 </section>
 
-<section class="cta">
-<h2>Ready to Own Google?</h2>
-<p>Domain: goooglelisting.services<br>Hosting: Netlify<br>Source Control: GitHub / Onyx</p>
-<a class="btn" href="tel:+14432250566">Call Now</a>
+<section class="form-section">
+<h2>Let's Get You Found</h2>
+<p class="sub">Tell us about your business and we'll reach out to build your Google presence.</p>
+<form name="customer-inquiry" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="contact-form" id="inquiry-form">
+  <input type="hidden" name="form-name" value="customer-inquiry" />
+  <p style="display:none"><label>Don't fill this out: <input name="bot-field" /></label></p>
+  <div>
+    <label for="name">Your Name</label>
+    <input type="text" id="name" name="name" placeholder="Jane Smith" required />
+  </div>
+  <div>
+    <label for="business-type">Type of Business</label>
+    <select id="business-type" name="business-type" required>
+      <option value="" disabled selected>Select your business type</option>
+      <option>Contractor / Trades</option>
+      <option>Restaurant / Food Service</option>
+      <option>Retail / Shop</option>
+      <option>Medical / Health</option>
+      <option>Legal / Professional Services</option>
+      <option>Home Services</option>
+      <option>Real Estate</option>
+      <option>Auto / Automotive</option>
+      <option>Other Local Business</option>
+    </select>
+  </div>
+  <div>
+    <label for="contact-time">Best Time to Contact</label>
+    <select id="contact-time" name="best-time-to-contact" required>
+      <option value="" disabled selected>When works best for you?</option>
+      <option>Morning (8am – 12pm)</option>
+      <option>Afternoon (12pm – 5pm)</option>
+      <option>Evening (5pm – 8pm)</option>
+      <option>Anytime</option>
+    </select>
+  </div>
+  <div>
+    <label for="desired-result">Desired Result</label>
+    <textarea id="desired-result" name="desired-result" placeholder="E.g. More calls from Google Maps, rank #1 locally, get more 5-star reviews…" required></textarea>
+  </div>
+  <button type="submit">Send My Information</button>
+</form>
+<div class="form-success" id="form-success">
+  Thanks! We received your information and will be in touch soon.
+</div>
 </section>
+
+<script>
+const form = document.getElementById('inquiry-form');
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const res = await fetch('/', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: new URLSearchParams(new FormData(form)).toString(),
+  });
+  if (res.ok) {
+    form.style.display = 'none';
+    document.getElementById('form-success').style.display = 'block';
+  }
+});
+</script>
 
 <footer>
 © 2026 Google Listing Services
